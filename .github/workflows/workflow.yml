@@ -15,10 +15,12 @@ jobs:
 
       - name: Run unit test
         run: |
-          npm test
+          npm install -g karma-cli
+          npm test -- --browsers=ChromeHeadless
           rm -rf node_modules
 
-  package-and-publish:
+  build-and-publish:
+    #needs: [config-and-test]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
