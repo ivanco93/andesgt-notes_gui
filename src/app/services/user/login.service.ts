@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { User } from '../../model/user';
 import { Observable } from 'rxjs';
 import { RefreshToken } from '../../model/refresh-token';
-import { environment } from '../../../environment/environment';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'

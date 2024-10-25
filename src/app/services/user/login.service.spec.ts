@@ -3,7 +3,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { LoginService } from './login.service';
 import { User } from '../../model/user';
 import { RefreshToken } from '../../model/refresh-token';
-import { environment } from '../../../environment/environment';
+import { environment } from '../../environments/environment';
 
 describe('LoginService', () => {
   let service: LoginService;

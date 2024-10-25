@@ -1,6 +1,6 @@
 import { Component, OnInit, PipeTransform } from '@angular/core';
-import { AsyncPipe, DecimalPipe } from '@angular/common';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { AsyncPipe, CommonModule, DecimalPipe } from '@angular/common';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
@@ -47,13 +47,14 @@ export class NgbdModalContent {
 @Component({
   selector: 'app-note',
   standalone: true,
-  imports: [DecimalPipe, AsyncPipe, ReactiveFormsModule, NgbHighlight],
+  imports: [DecimalPipe, AsyncPipe, ReactiveFormsModule, NgbHighlight, CommonModule, FormsModule],
   templateUrl: './note.component.html',
   providers: [DecimalPipe],
 })
 export class NoteComponent implements OnInit{
 	myModal = document.getElementById('exampleModal');
 	filter = new FormControl('', { nonNullable: true });
+	statusFilter = "";
 	loading: Boolean = false;
   	errorMessage: string = "";
 	notes: Note[] = [];
@@ -91,6 +92,21 @@ export class NoteComponent implements OnInit{
 		});
 	}
 
+	filterNotes(){
+		this.loading = true;
+		this.errorMessage = "";
+		this.noteService.filterNotes(this.statusFilter).subscribe({
+			next: (response: Note[]) => {
+				this.loading = false;
+				this.notes = response;
+			},
+			error: (httpError: HttpErrorResponse) => {
+				this.loading = false;
+				this.errorMessage = httpError.error["detail"]??httpError.error["status"]??"query error";
+			}
+		});
+	}
+
 	deleteNote(id: any|number){
 		this.loading = true;
 		this.errorMessage = "";
@@ -103,6 +119,14 @@ export class NoteComponent implements OnInit{
 				this.errorMessage = httpError.error["detail"];
 			}
 		});
+	}
+	
+	findByStatus(){
+		if(this.statusFilter.trim()!==""){
+			this.filterNotes();
+		}else{
+			this.getNotes();
+		}
 	}
 
 	goToNewNoteForm(){

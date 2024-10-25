@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Note } from '../../model/note';
-import { environment } from '../../../environment/environment';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +19,13 @@ export class NoteService {
 
   getNotes(): Observable<Note[]>{
     return this.http.get<any>(`${environment.apiUrl}/notes/`, {
+      headers: this.getHttpHeaders(),
+      responseType: 'json'
+    });
+  }
+
+  filterNotes(status: string): Observable<Note[]>{
+    return this.http.get<any>(`${environment.apiUrl}/notes/?status=${status}`, {
       headers: this.getHttpHeaders(),
       responseType: 'json'
     });
