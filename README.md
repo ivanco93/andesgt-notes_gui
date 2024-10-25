@@ -1,27 +1,77 @@
-# AndesgtNotesGui
+# AngesGT notes GUI project
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.10.
+<!-- TABLE OF HEADER -->
+[![NodeJs][skill-node-shield]][skill-node-url]
+[![Angular][skill-angular-shield]][skill-angular-url]
 
-## Development server
+<!-- ABOUT THE PROJECT -->
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## About The Project
 
-## Code scaffolding
+AndesGT notes GUI is an Angular application for calling of notes API REST 
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Project Organization
 
-## Build
+This section contains the archetype how the project is built and the content of each of the application directories.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+    ├── .github
+    │   ├── workflows                         
+    │   │       └── workflow.yml              <- github actions pipeline for continuous integration
+    ├── src
+    │   ├── app                               <- main project owner of settings and route register files
+    │   │   ├── environments                  <- environments configuration file
+    │   │   ├── guard                         <- guards used for authentication validations in routes access
+    │   │   ├── login                         <- component used for authentication view
+    │   │   ├── model                         <- models used for application
+    │   │   ├── notes                         <- component used for notes CRUD view
+    │   │   └── services                      <- services used for http requests
+    ├── Dockerfile                            <- Docker file used for images creation
+    ├── .gitignore                            <- Ignored files for Github
+    └── README.md                             
 
-## Running unit tests
+<!-- GETTING STARTED -->
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Getting Started
 
-## Running end-to-end tests
+Instructions on how to configure your project locally. To get a working local copy, follow these example steps.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### Prerequisites
 
-## Further help
+* [Node 20](https://www.node.org/downloads/)
+* [Docker](https://docs.docker.com/engine/install/) `For docker images building and testing`
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Installation
+
+
+### 💻 Locally
+
+```shell
+npm install
+```
+
+
+Now, you can start the server(defaul port:4200) with the next command
+```shell
+npm start
+```
+### 🧪 Quality assurance
+
+Run unit tests
+```shell
+npm test
+```
+
+# CI/CD
+
+Project uses Github Actions worflows for CI/CD tasks
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://shields.io/ -->
+
+[skill-node-shield]: https://img.shields.io/badge/Node%20JS-20.18-blue
+
+[skill-node-url]: https://www.node.org/downloads/
+
+[skill-angular-shield]: https://img.shields.io/badge/Angular-18-blue
+
+[skill-angular-url]: https://angular.dev/
